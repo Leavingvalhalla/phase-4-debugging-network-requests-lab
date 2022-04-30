@@ -62,12 +62,14 @@ developing your own process.
 
 - Add a new toy when the toy form is submitted
 
-  - How I debugged:
+  - How I debugged: It showed the "unexpected end of JSON" error. I double-checked the fetch request, then read through the method in the controller. It never converted the new Toy object to a json, so I made those changes.
 
 - Update the number of likes for a toy
 
-  - How I debugged:
+  - How I debugged: I got an error reading "NameError (uninitialized constant ToysController::Toys):" Which means there was a problem with the actual object being created. Turns out it was reading "Toys.create" instead of "Toy.create"
 
 - Donate a toy to Goodwill (and delete it from our database)
 
-  - How I debugged:
+  - How I debugged: Error: ActionController::RoutingError (No route matches [DELETE] "/toys/undefined")"
+    Solution: add route functionality to the routes. (It was using the ":resources" macro, but
+    had an "only:" clause keeping it from setting up the delete method)
